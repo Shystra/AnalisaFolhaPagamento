@@ -4,6 +4,8 @@ import pandas as pd
 def trata_df_contemSalario(caminho_contemSalario):
     df = pd.read_excel(caminho_contemSalario)
     
+
+
     df = df[df['Nome'] != 'Nome']
     df.reset_index(drop=True, inplace=True)
 
@@ -11,6 +13,7 @@ def trata_df_contemSalario(caminho_contemSalario):
     df['chave'] = df['Nome'] + "-" + df['Matrícula'].astype(str)
     # Remover linhas com valores NaN na coluna 'chave'
     df = df.dropna(subset=['chave'])
+    
     
     # Verificar novamente as duplicatas após a remoção
     duplicadas_apos_remocao = df[df.duplicated(subset='chave', keep=False)]
@@ -30,14 +33,27 @@ def trata_df_contemSalario(caminho_contemSalario):
         print(f"Erro encontrado ao tentar converter a coluna 'Jornada Mensal Horas': {e}")
 
     df = ajusta_salario_vigilantes_com_periculosidade(df)
+    # Converte para numero int
+    df['% Periculosidade'] = df['% Periculosidade'].astype(int)
+    df['% Insalubridade'] = df['% Insalubridade'].astype(int)
+    
+    df = ajusta_salario_com_insalubridade(df)
+
+    
     
     return df
 
 def ajusta_salario_vigilantes_com_periculosidade(df):
     # Máscara para identificar registros de 'Vigilantes' e 'Táticos' com 30% de periculosidade
-    mascara = df['Nome Função'].str.contains('Vigilante|Tático', case=False) & (df['% Periculosidade'] == 30)
+    mascara = df['Nome Função'].str.contains('Vigilante|Tático|Supervisor', case=False) & (df['% Periculosidade'] == 30)
 
     # Calcular o adicional de 30% sobre o salário base
     df.loc[mascara, 'Salário'] = df.loc[mascara, 'Salário'] * 1.30
+    
+    return df
 
+def ajusta_salario_com_insalubridade(df):
+    # Calcula o adicional de insalubridade sobre o salário base
+    df['Salário'] = df['Salário'] + (df['% Insalubridade'] / 100.0) * df['Salário']
+    
     return df
