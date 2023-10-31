@@ -1,0 +1,44 @@
+1. Análise Inicial:
+
+Estatísticas descritivas do salário base (e quaisquer outros componentes de salário que você queira analisar, como adicionais).
+Identificar valores ausentes (NaN) ou outliers que possam indicar erros de registro.
+
+
+
+Dadas as estatísticas descritivas:
+
+O salário médio é de aproximadamente 1743.60.
+O desvio padrão é de 624.58, o que sugere uma variação considerável nos salários.
+O salário mínimo registrado é de apenas 6.37.
+50% (mediana) dos funcionários ganham 1808 ou menos.
+O salário máximo registrado é de 6521.14.
+
+
+Horas
+O valor médio da jornada mensal é de aproximadamente 210.73 horas.
+O desvio padrão é de aproximadamente 25.82 horas, o que indica uma variação em torno da média.
+O valor mínimo é 40 horas, o que é interessante e pode ser relevante para análises posteriores, pois indica que há trabalhadores com uma jornada significativamente menor.
+O primeiro quartil (25%), a mediana (50%) e o terceiro quartil (75%) são todos 220 horas, sugerindo que uma grande maioria dos trabalhadores possui uma jornada mensal de 220 horas.
+O valor máximo também é 220 horas.
+
+
+
+Os dados indicam que a vasta maioria dos funcionários (3.257) está em situação de trabalho ("Trabalhando"), enquanto 149 estão afastados ("Afastado").
+
+
+
+
+% Insalubridade:
+
+A grande maioria (3.163) dos funcionários não recebe insalubridade.
+162 funcionários recebem um adicional de 40% por insalubridade.
+81 funcionários recebem um adicional de 20% por insalubridade.
+% Periculosidade:
+
+1.750 funcionários não recebem adicional de periculosidade.
+1.656 funcionários recebem um adicional de 30% por periculosidade.
+Isso significa que:
+
+Um número significativo de funcionários não recebe nem insalubridade nem periculosidade.
+Entre os que recebem insalubridade, a maior parte recebe o adicional máximo de 40%.
+A distribuição de periculosidade está quase igualmente dividida entre aqueles que recebem o adicional e aqueles que não recebem.
